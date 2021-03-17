@@ -1,9 +1,5 @@
 const path = require('path');
 const paths = require('./paths');
-// 自动生成html
-const HtmlWebpackPlugin = require('html-webpack-plugin');
-// 单独分离css文件
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // 自动添加css前缀
 // const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
@@ -83,32 +79,4 @@ module.exports = {
             utils: path.join(__dirname, '..', 'src/utils'),
         },
     },
-    plugins: [
-        new HtmlWebpackPlugin({
-            filename: 'index.html', // 配置输出文件名和路径
-            template: paths.appHtml, // 配置文件模板
-        }),
-        new ExtractTextPlugin('index.css'),
-    ],
-    devServer: {
-        // host: 'localhost', // 默认
-        // port: 8080,
-        // // hot: true, // 热替换 4.x 默认开启
-        // clientLogLevel: "none", // 阻止消息提示
-        // compress: true,
-        // // quiet: true, // 错误和警告都不显示
-        // noInfo: true,
-        // watchContentBase: true,
-        // publicPath: publicPath,
-        // // 静态文件存放内容
-        contentBase: path.join(__dirname, 'public'),
-        proxy: {
-            '/api': {
-                // 将 URL 中带有 /api 的请求代理到本地的 3000 端口的服务上
-                target: "http://localhost:3000",
-                // 把 URL 中 path 部分的 `api` 移除掉
-                pathRewrite: {'^/api': ''},
-            },
-        }
-    }
 };

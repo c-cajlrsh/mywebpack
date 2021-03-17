@@ -88,14 +88,6 @@ module.exports = {
                     }
                 ]
             },
-            {
-                // 处理js等文件，都通过fileloader的处理
-                exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.(css|less)$/, /\.(bmp|gif|jpe?g|png)/],
-                loader: 'file-loader',
-                options: {
-                    name: 'static/media/[name].[hash:8].[ext]',
-                },
-            },
         ]
     },
     /**

@@ -68,14 +68,6 @@ module.exports = {
                     name: 'static/media/[name].[hash:8].[ext]',
                 },
             },
-            {
-                // 处理js等文件，都通过fileloader的处理
-                exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.(css|less)$/, /\.(bmp|gif|jpe?g|png)/],
-                loader: require.resolve('file-loader'),
-                options: {
-                    name: 'static/media/[name].[hash:8].[ext]',
-                },
-            },
         ]
     },
     /**
