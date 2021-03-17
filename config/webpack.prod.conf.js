@@ -9,7 +9,6 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 // 删除文件
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const publicPath = '/';
 module.exports = {
     mode: 'production',
     entry: {
@@ -17,7 +16,7 @@ module.exports = {
         vendor: ["react", "lodash"], // 指定公共使用的第三方类库
     },
     output: {
-        publicPath: publicPath,
+        publicPath: paths.publicPath,
         filename: '[name].[hash:8].js',
         chunkFilename: '[name].[hash:8].js' // 指定分离出来的代码文件的名称...
     },
@@ -28,10 +27,6 @@ module.exports = {
                 include: [paths.appSrc],
                 use: {
                     loader: 'babel-loader',
-                    options: {
-                        presets: ['@babel/preset-react'],
-                        cacheDirectory: true // 缓存
-                    }
                 }
             },
             {
@@ -124,8 +119,8 @@ module.exports = {
             [paths.dist],　 //匹配删除的文件
             {
                 root: paths.root,
-                verbose:  true,        　
-                dry:      false
+                verbose: true,
+                dry: false
             }
         ),
         new HtmlWebpackPlugin({

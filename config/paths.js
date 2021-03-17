@@ -10,10 +10,11 @@ const appDirectory = fs.realpathSync(process.cwd()); // 项目的当前目录
 const resolveApp = relativePath => path.resolve(appDirectory, relativePath);
 
 module.exports = {
-    root: resolveApp('/'),
+    root: resolveApp('/'), // 根目录
     appHtml: resolveApp('public/index.html'), // html 模板的存放路径
     appNodeModules: resolveApp('node_modules'), // 模块文件目录
     appSrc: resolveApp('src'), // 项目开发目录
     appIndex: resolveApp('src/index.js'), // 打包入口
     dist: resolveApp('dist'), // 打包出口文件
+    publicPath: '/' // 资源文件路径
 };
