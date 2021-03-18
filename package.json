@@ -6,7 +6,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "npx webpack-dev-server --progress --inline --config config/webpack.dev.conf.js ",
-    "build": "npx webpack --config config/webpack.prod.js --progress"
+    "build": "npx webpack --config config/webpack.prod.conf.js --progress"
   },
   "keywords": [],
   "author": "",

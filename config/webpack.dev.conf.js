@@ -1,5 +1,6 @@
 const path = require('path');
 const paths = require('./paths');
+const webpack = require('webpack');
 // 自动生成html
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 友好的webpack错误提示
@@ -18,6 +19,8 @@ module.exports = merge(baseWebpackConfig, {
             template: paths.appHtml, // 配置文件模板
             inject: true
         }),
+        new webpack.HotModuleReplacementPlugin(), // 模块热替换
+        new webpack.NamedModulesPlugin(), // 显示模块正确的相对路径
         new FriendlyErrorsPlugin({ // 友好的错误提示
             compilationSuccessInfo: {
                 messages: [`http://${config.dev.server.host}:${config.dev.server.port}`]
@@ -30,7 +33,7 @@ module.exports = merge(baseWebpackConfig, {
     devServer: {
         host: config.dev.server.host, // 默认
         port: config.dev.server.port,
-        // hot: true, // 热替换 4.x 默认开启
+        hot: true, // 模块热替换
         clientLogLevel: 'warning', // 消息提示级别
         compress: true,
         open: config.dev.server.autoOpenBrowser, // 自动打开浏览器

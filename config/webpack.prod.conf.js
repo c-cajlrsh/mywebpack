@@ -5,11 +5,13 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 单独分离css文件
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // 自动添加css前缀
-// const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 // 删除文件
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-module.exports = {
+const merge = require('webpack-merge');
+const baseWebpackConfig = require('./webpack.base.conf');
+
+module.exports = merge(baseWebpackConfig, {
     mode: 'production',
     entry: {
         index: paths.appIndex,
@@ -22,13 +24,6 @@ module.exports = {
     },
     module: {
         rules: [
-            {
-                test: /\.(js|jsx)$/,
-                include: [paths.appSrc],
-                use: {
-                    loader: 'babel-loader',
-                }
-            },
             {
                 test: /\.(css|less)$/,
                 include: [paths.appSrc],
@@ -69,7 +64,7 @@ module.exports = {
                 test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
                 use: [
                     {
-                        loader: require.resolve('url-loader'),
+                        loader: 'url-loader',
                         options: {
                             limit: 10000,
                             name: 'static/img/[name].[hash:8].[ext]',
@@ -91,15 +86,6 @@ module.exports = {
      * alias 配置路径别名
      * mainFiles 默认文件
      */
-    resolve: {
-        modules: ['node_modules', paths.appNodeModules],
-        extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
-        alias: {
-            '@': path.join(__dirname, '..', 'src'),
-            utils: path.join(__dirname, '..', 'src/utils'),
-        },
-        mainFiles: ['index'],
-    },
     // 代码分离
     optimization: {
         splitChunks: {
@@ -128,9 +114,15 @@ module.exports = {
             template: paths.appHtml, // 配置文件模板
             minify: { // 压缩 HTML 的配置
                 minifyCSS: true, // 压缩 HTML 中出现的 CSS 代码
-                minifyJS: true // 压缩 HTML 中出现的 JS 代码
+                minifyJS: true, // 压缩 HTML 中出现的 JS 代码
+                removeComments: true, // 删除注释
+                collapseWhitespace: true, // 去除空格
+                removeAttributeQuotes: true //
             }
         }),
-        new ExtractTextPlugin('index.css'),
+        new ExtractTextPlugin({
+            filename: 'index.css',
+            allChunks: true
+        }),
     ],
-};
+});
