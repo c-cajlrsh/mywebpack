@@ -8,7 +8,7 @@ import 'utils/demo';
 class App extends Component{
     render() {
         return (
-            <div className={'test'}>爱克模块热替换替换替换
+            <div className={'test'}>爱克模块热替换替换替换sourceMap
                 <img src={img} style={{width: '100px', height: '100px'}} alt=""/>
                 <img src={b} style={{width: '100px', height: '100px'}} alt=""/>
                 {

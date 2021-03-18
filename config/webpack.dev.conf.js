@@ -13,6 +13,7 @@ const utils = require('./utils');
 
 module.exports = merge(baseWebpackConfig, {
     mode: 'development',
+    devtool: config.dev.devtool, // soureMap
     plugins: [
         new HtmlWebpackPlugin({
             filename: 'index.html', // 配置输出文件名和路径
@@ -42,5 +43,6 @@ module.exports = merge(baseWebpackConfig, {
         publicPath: paths.publicPath,
         // 静态文件存放内容
         contentBase: path.join(__dirname, '..', 'public'),
+        proxy: config.dev.proxy
     }
 });

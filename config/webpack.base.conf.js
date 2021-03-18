@@ -3,7 +3,6 @@ const paths = require('./paths');
 // 自动添加css前缀
 const autoprefixer = require('autoprefixer');
 module.exports = {
-    mode: 'development',
     output: {
         publicPath: paths.publicPath,
     },

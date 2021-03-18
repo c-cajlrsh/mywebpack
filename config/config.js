@@ -3,10 +3,9 @@ module.exports = {
         server: {
             host: 'localhost',
             port: 8080,
-            autoOpenBrowser: true
+            autoOpenBrowser: true // 自动打开浏览器
         },
-        devtool: 'cheap-module-eval-source-map',
-        cssSourceMap: true,
+        devtool: 'source-map',// cheap-module-eval-source-map
         notifyOnErrors: true, // 错误提示
         proxy: {
             '/api': {
@@ -18,6 +17,6 @@ module.exports = {
         }
     },
     build: {
-
+        devtool: '',
     }
 };
