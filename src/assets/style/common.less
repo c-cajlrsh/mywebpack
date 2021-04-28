@@ -1,0 +1,18 @@
+.drop-shadow(@color) {
+    .icon {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        overflow: hidden;
+    }
+    .icon-del {
+        background: url(../../assets/images/delete.png) no-repeat center;
+    }
+    .icon > .icon {
+        position: relative;
+        left: -20px;
+        border-right: 20px solid transparent;
+        -webkit-filter: drop-shadow(@color 20px 0);
+        filter: drop-shadow(@color 20px 0);
+    }
+}

@@ -10,17 +10,19 @@ const autoprefixer = require('autoprefixer');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const merge = require('webpack-merge');
 const baseWebpackConfig = require('./webpack.base.conf');
+const config = require('./config');
 
 module.exports = merge(baseWebpackConfig, {
     mode: 'production',
+    devtool: config.build.devtool,
     entry: {
         index: paths.appIndex,
         vendor: ["react", "lodash"], // 指定公共使用的第三方类库
     },
     output: {
         publicPath: paths.publicPath,
-        filename: '[name].[hash:8].js',
-        chunkFilename: '[name].[hash:8].js' // 指定分离出来的代码文件的名称...
+        filename: 'js/[name].[hash:8].js',
+        chunkFilename: 'js/[name].[hash:8].js' // 指定分离出来的代码文件的名称...
     },
     module: {
         rules: [
@@ -34,6 +36,7 @@ module.exports = merge(baseWebpackConfig, {
                             loader: 'css-loader',
                             options: {
                                 minimize: true, // 使用 css 的压缩功能
+                                localIdentName: '[path][name]-[local]-[hash:base64:5]'
                             },
                         },
                         {
@@ -121,7 +124,7 @@ module.exports = merge(baseWebpackConfig, {
             }
         }),
         new ExtractTextPlugin({
-            filename: 'index.css',
+            filename: 'css/index.css',
             allChunks: true
         }),
     ],

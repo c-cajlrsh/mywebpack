@@ -5,8 +5,9 @@ module.exports = {
             port: 8080,
             autoOpenBrowser: true // 自动打开浏览器
         },
-        devtool: 'source-map',// cheap-module-eval-source-map
+        devtool: 'cheap-module-eval-source-map',// cheap-module-eval-source-map
         notifyOnErrors: true, // 错误提示
+        cssModules: false,
         proxy: {
             '/api': {
                 // 将 URL 中带有 /api 的请求代理到本地的 3000 端口的服务上
@@ -17,6 +18,6 @@ module.exports = {
         }
     },
     build: {
-        devtool: '',
+        devtool: 'cheap-module-source-map',
     }
 };

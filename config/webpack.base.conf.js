@@ -1,7 +1,5 @@
 const path = require('path');
 const paths = require('./paths');
-// 自动添加css前缀
-const autoprefixer = require('autoprefixer');
 module.exports = {
     output: {
         publicPath: paths.publicPath,
@@ -16,7 +14,13 @@ module.exports = {
         extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
         alias: {
             '@': path.join(__dirname, '..', 'src'),
-            utils: path.join(__dirname, '..', 'src/utils'),
+            'utils': path.join(__dirname, '..', 'src/utils'),
+            'assets': path.join(__dirname, '..', 'src/assets'),
+            'base': path.join(__dirname, '..', 'src/base'),
+            'common': path.join(__dirname, '..', 'src/common'),
+            'components': path.join(__dirname, '..', 'src/components'),
+            'api': path.join(__dirname, '..', 'src/api'),
+            'router': path.join(__dirname, '..', 'src/router')
         },
     },
     module: {
@@ -25,48 +29,6 @@ module.exports = {
                 test: /\.(js|jsx)$/,
                 include: [paths.appSrc],
                 use: {loader: 'babel-loader',}
-            },
-            {
-                test: /\.(css|less)$/,
-                include: [paths.appSrc],
-                use: [
-                    'style-loader',
-                    {
-                        loader: 'css-loader',
-                        options: {
-                            importLoaders: 1,
-                        },
-                    },
-                    {
-                        loader: 'postcss-loader',
-                        options: {
-                            // Necessary for external CSS imports to work
-                            // https://github.com/facebookincubator/create-react-app/issues/2677
-                            ident: 'postcss',
-                            plugins: () => [
-                                require('postcss-flexbugs-fixes'),
-                                autoprefixer({
-                                    browsers: [
-                                        '>1%',
-                                        'last 4 versions',
-                                        'Firefox ESR',
-                                        'not ie < 9', // React doesn't support IE8 anyway
-                                    ],
-                                    flexbox: 'no-2009',
-                                }),
-                            ],
-                        },
-                    },
-                    'less-loader',
-                ],
-            },
-            {
-                test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-                loader: 'url-loader',
-                options: {
-                    limit: 10000,
-                    name: 'static/img/[name].[hash:8].[ext]',
-                },
             },
             {
                 test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,

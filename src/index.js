@@ -1,14 +1,13 @@
 import React, {Component} from 'react';
 import ReactDOM from 'react-dom';
-import img from './img/a.jpg';
-import b from './img/b.jpg';
-import './test.css';
-import './test1.less';
-import 'utils/demo';
-class App extends Component{
+import img from './assets/images/a.jpg';
+import b from './assets/images/b.jpg';
+import Router from 'router/config';
+
+/*class App extends Component{
     render() {
         return (
-            <div className={'test'}>爱克模块热替换替换替换sourceMap
+            <div className={'test'}>爱克模块热替换替换替换sourceMapfg
                 <img src={img} style={{width: '100px', height: '100px'}} alt=""/>
                 <img src={b} style={{width: '100px', height: '100px'}} alt=""/>
                 {
@@ -19,6 +18,9 @@ class App extends Component{
             </div>
         )
     }
-}
+}*/
 
-ReactDOM.render(<App/>, document.getElementById('root'));
+
+ReactDOM.render(
+    <Router />,
+    document.getElementById('root'));
