@@ -1,6 +1,8 @@
 import React, {Component} from 'react';
-import './style.less';
+import CSSModules from 'react-css-modules';
+import styles from './style.less';
 
+@CSSModules(styles, { allowMultiple: true })
 class Aike extends Component {
     render() {
         return (

@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import classnames from 'classnames';
-import './style.less';
+import styles from './style.less';
+import CSSModules from 'react-css-modules';
 import TabNav from './TabNav';
 import TabContent from './TabContent';
 
+@CSSModules(styles, { allowMultiple: true })
 class Tabs extends Component {
     static defaultProps = {
         classPrefix: 'tabs', // class 前缀
@@ -29,12 +31,13 @@ class Tabs extends Component {
 
     renderTabNav() {
         const {classPrefix, children} = this.props;
+        const childrenArr = React.Children.toArray(children);
         return (
             <TabNav
                 key={'tabBar'}
                 classPrefix={classPrefix}
                 onTabClick={this.handleClick}
-                panels={children}
+                panels={childrenArr}
                 activeIndex={this.state.activeIndex}
             />
         )
@@ -42,12 +45,13 @@ class Tabs extends Component {
 
     renderTabContent() {
         const {classPrefix, children} = this.props;
+        const childrenArr = React.Children.toArray(children);
         return (
             <TabContent
                 key="tabcontent"
                 classPrefix={classPrefix}
                 activeIndex={this.state.activeIndex}
-                panels={children}
+                panels={childrenArr}
             />
         )
     }

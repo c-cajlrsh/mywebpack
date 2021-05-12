@@ -24,6 +24,7 @@ class Child extends Component {
                     <li><NavLink to="/child/bus">Bus</NavLink></li>
                     <li><NavLink to="/child/cart">Cart</NavLink></li>
                 </ul>
+                <Aike/>
                 <Switch>
                     {
                         this.props.routes.map((route, i) => (

@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import img from './assets/images/a.jpg';
 import b from './assets/images/b.jpg';
 import Router from 'router/config';
+import './assets/style/reset.less';
 
 /*class App extends Component{
     render() {

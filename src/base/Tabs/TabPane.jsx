@@ -1,18 +1,21 @@
 import React, {Component} from 'react';
+import CSSModules from 'react-css-modules';
 import classnames from 'classnames'
 
+import styles from './style.less';
+
+@CSSModules(styles, { allowMultiple: true })
 class TabPane extends Component {
     render() {
-        const {classPrefix, className, isActive, children} = this.props;
+        const {className, isActive, children} = this.props;
         const classes = classnames({
-            [className]: className,
-            [`${classPrefix}-panel`]: true,
-            [`${classPrefix}-active`]: isActive,
+            panel: true,
+            contentActive: isActive,
         });
         return (
             <div
                 role={'tabpanel'}
-                className={classes}
+                styleName={classes}
                 aria-hidden={!isActive}
             >
                 {children}

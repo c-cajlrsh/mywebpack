@@ -1,0 +1,42 @@
+.before-after-border(@left) {
+  content: "";
+  position: absolute;
+  background-color: #ddd;
+  display: block;
+  z-index: 1;
+  top: auto;
+  right: auto;
+  bottom: 0;
+  left: @left;
+  width: 100%;
+  height: 1px;
+  transform-origin: 50% 100%;
+  transform: scaleY(.5);
+}
+
+/*去除input默认样式*/
+.input-clear() {
+  width: 100%;
+  border: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  background-color: transparent;
+  font-size: inherit;
+  color: inherit;
+}
+
+/*修改默认placeholder颜色*/
+.placeholder-color(@color) {
+  &::-webkit-input-placeholder {
+    color: @color;
+  }
+  &::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color: @color;
+  }
+  &:-moz-placeholder { /* Mozilla Firefox 4 to 18 */
+    color: @color;
+  }
+  &:-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: @color;
+  }
+}

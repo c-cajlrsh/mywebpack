@@ -1,6 +1,11 @@
 import React, {Component, cloneElement} from 'react';
-import classnames from 'classnames'
+import classnames from 'classnames';
+import CSSModules from 'react-css-modules';
 
+import styles from './style.less';
+import './style.less';
+
+@CSSModules(styles, { allowMultiple: true })
 class TabContent extends Component {
     getTabPanes() {
         const {classPrefix, activeIndex, panels} = this.props;
@@ -20,10 +25,10 @@ class TabContent extends Component {
     render() {
         const {classPrefix} = this.props;
         const classes = classnames({
-            [`${classPrefix}-content`]: true,
+            content: true,
         });
         return (
-            <div className={classes}>
+            <div styleName={classes} className={'font'}>
                 {this.getTabPanes()}
             </div>
         )

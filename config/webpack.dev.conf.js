@@ -21,7 +21,8 @@ module.exports = merge(baseWebpackConfig, {
         rules: [
             {
                 test: /\.(css|less)$/,
-                include: [paths.appSrc],
+                // exclude: [path.join(__dirname, '..', 'src', 'assets')],
+                exclude: [paths.cssModules],
                 use: ExtractTextPlugin.extract({
                     fallback: 'style-loader',
                     use: [
@@ -32,6 +33,44 @@ module.exports = merge(baseWebpackConfig, {
                                 sourceMap: true,
                                 modules: config.dev.cssModules,
                                 localIdentName: '[path][name]-[local]-[hash:base64:5]'
+                            },
+                        },
+                        {
+                            loader: 'postcss-loader',
+                            options: {
+                                // Necessary for external CSS imports to work
+                                // https://github.com/facebookincubator/create-react-app/issues/2677
+                                ident: 'postcss',
+                                plugins: () => [
+                                    require('postcss-flexbugs-fixes'),
+                                    autoprefixer({
+                                        browsers: [
+                                            '>1%',
+                                            'last 4 versions',
+                                            'Firefox ESR',
+                                            'not ie < 9', // React doesn't support IE8 anyway
+                                        ],
+                                        flexbox: 'no-2009',
+                                    }),
+                                ],
+                            },
+                        },
+                        'less-loader',
+                    ],
+                }),
+            },
+            {
+                test: /\.(css|less)$/,
+                // include: [path.join(__dirname, '..', 'src', 'assets')],
+                include: [paths.cssModules],
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    use: [
+                        {
+                            loader: 'css-loader',
+                            options: {
+                                importLoaders: 1,
+                                sourceMap: true,
                             },
                         },
                         {

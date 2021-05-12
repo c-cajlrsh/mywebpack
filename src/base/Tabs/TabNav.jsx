@@ -1,16 +1,21 @@
 import React, {Component} from 'react';
+import CSSModules from 'react-css-modules';
 import classnames from 'classnames';
 
+import styles from './style.less';
+
+@CSSModules(styles, { allowMultiple: true })
 class TabNav extends Component {
+
     getTabs() {
         const {panels, classPrefix, activeIndex} = this.props;
         return React.Children.map(panels, (child) => {
             if (!child) return;
             const order = parseInt(child.props.order, 10);
             let classes = classnames({
-                [`${classPrefix}-tab`]: true,
-                [`${classPrefix}-active`]: activeIndex === order,
-                [`${classPrefix}-disabled`]: child.props.disabled,
+                tab: true,
+                tabActive: activeIndex === order,
+                disabled: child.props.disabled,
             });
             let events = {};
             if (!child.props.disabled) {
@@ -28,7 +33,7 @@ class TabNav extends Component {
                     aria-disabled={child.props.disabled ? 'true' : 'false'}
                     aria-selected={activeIndex === order ? 'true' : 'false'}
                     {...events}
-                    className={classes}
+                    styleName={classes}
                     key={order}
                     {...ref}
                 >
@@ -39,16 +44,16 @@ class TabNav extends Component {
     };
 
     render() {
-        const {classPrefix} = this.props;
+        // const {classPrefix} = this.props;
         const rootClasses = classnames({
-            [`${classPrefix}-bar`]: true,
+            bar: true,
         });
         const classes = classnames({
-            [`${classPrefix}-nav`]: true,
+            nav: true,
         });
         return (
-            <div className={rootClasses} role={'tablist'}>
-                <ul className={classes}>
+            <div styleName={rootClasses} role={'tablist'}>
+                <ul styleName={classes}>
                     {this.getTabs()}
                 </ul>
             </div>

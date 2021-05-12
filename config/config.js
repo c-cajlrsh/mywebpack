@@ -7,7 +7,7 @@ module.exports = {
         },
         devtool: 'cheap-module-eval-source-map',// cheap-module-eval-source-map
         notifyOnErrors: true, // 错误提示
-        cssModules: false,
+        cssModules: true, // css模块化
         proxy: {
             '/api': {
                 // 将 URL 中带有 /api 的请求代理到本地的 3000 端口的服务上
